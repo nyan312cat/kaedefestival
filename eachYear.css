@@ -1,0 +1,103 @@
+/*aタグのスタイル*/
+a{
+	text-decoration: none;
+	color:black;
+}
+a:hover{
+	background-color:#eee;
+}
+a:focus{
+	background-color:#555;
+}
+/*pcでは改行しないbr*/
+@media only screen and (min-width:700px){
+	.noneIfpc{display:none;}
+}
+/*----------ヘッダー始まり----------*/
+#head{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	border-bottom:1px solid black;
+	display:inline-block;
+	padding:.2rem 0;
+	background-color:#FFF;
+	box-sizing:border-box;
+}
+#menuCheckBox{display:none;}
+#menu{
+	display:inline-block;
+	overflow:hidden;
+	width:2rem;
+	height:2rem;
+	border:3px solid transparent;
+	border-radius:5%;
+	text-align:center;
+}
+#menuBars{
+	width:1.25rem;
+	margin:1rem auto;
+}
+.bar{
+	width:100%;
+	height:.1rem;
+	margin:.2rem 0;
+	border-radius:.1rem;
+	background-color:black;
+}
+#schoolBadge{
+	display:inline-block;
+	height:2rem;
+	width:auto;
+	margin:0;
+	padding:0;
+}
+#title{
+	display:inline-block;
+	margin:0;
+	font-size:2rem;
+}
+/*----------ヘッダー終わり----------*/
+
+
+/*----------メニュー始まり----------*/
+#menubtns{
+	display:none;
+	position:fixed;
+	left:0;
+	width:15rem;
+	height:100%;
+	border-right:1px black solid;
+	background-color:#FFF;
+	overflow:scroll;
+	margin:0;
+	padding:0;
+}
+#menubtns li{
+	list-style:none;
+	position:relative;
+}
+#menubtns li li{
+	height:0;
+	display:none;
+}
+#menubtns a{
+	padding:.25rem;
+	border-left:1px silver solid;
+	border-bottom:1px silver solid;
+	display:block;
+	text-align:center;
+	vertical-align: middle;
+}
+#menubtns li:hover>ul>li{
+	display:block;
+	height:auto;
+}
+#menubtns li:hover>ul>li:last-child>a{
+	border-bottom:none;
+}
+#menubtns li:hover>ul{
+	border-bottom:1px silver solid;
+}
+/*----------メニュー終わり----------*/
