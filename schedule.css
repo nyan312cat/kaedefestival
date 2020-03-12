@@ -1,0 +1,76 @@
+main{
+  position:relative;
+  overflow-x:scroll;
+}
+a{
+	text-decoration:none;
+	color:black;
+}
+a:hover{
+	background-color:#eee;
+}
+a:focus{
+	background-color:#555;
+}
+#schedule{
+  width:calc(62rem + 7px);
+  font-size:0;
+}
+#schedule div{
+  display:inline-block;
+  text-align:center;
+  margin:0;
+  vertical-align:top;
+}
+#schedule>div{
+  width:15rem;
+  border-top:1px black solid;
+  position:relative;
+}
+#schedule>div:first-child{
+  width:2rem;
+  position:sticky;
+  left:0;
+  background-color:#fff;
+  z-index:1;
+  border:none;
+}
+#schedule>div>div{
+  height:5rem;
+  width:100%;
+  border-bottom:1px black solid;
+  border-right:1px black solid;
+}
+#schedule>div>div:first-child{
+  height:2rem;
+}
+#schedule>div:first-child>div{
+  border-bottom:1px #fff solid;
+  border-right:1px black solid;
+}
+#schedule>div:first-child>div:last-child{
+  border:none;
+}
+#schedule span{
+  font-size:1rem;
+  display:inline-block;
+  height:100%;
+  width:100%;
+  line-height:2rem;
+}
+#schedule>div:first-child span{
+  line-height:5rem;
+  transform:translateY(-50%);
+}
+#schedule a{
+  width:calc(100% - 1px);
+  position:absolute;
+  left:0;
+  font-size:1rem;
+  background-color:#eee;
+  border:1px gray solid;
+  overflow-y:scroll;
+}
+#schedule a:focus{
+	background-color:#555;
+}
