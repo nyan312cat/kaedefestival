@@ -29,20 +29,30 @@ header{
 	display:inline-block;
 	background-color:#FFF;
 	box-sizing:border-box;
+	z-index:100;
 }
 #head{
 	padding:.2rem 0;
 	border-bottom:1px solid black;
+	text-align:center;
 }
 #schoolBadge{
 	display:inline-block;
-	height:2rem;
+	height:2.5rem;
 	width:auto;
+	vertical-align:middle;
 }
-#title{
+#logo{
 	display:inline-block;
-	margin:0;
-	font-size:2rem;
+	height:3rem;
+	width:auto;
+	vertical-align:middle;
+}
+@media only screen and (min-width:calc(3rem * 7.2)){/* 7.2=1830/254(ロゴ画像の縦/横) */
+	#logo{
+		width:calc(100% - 5.5rem);/*menubtn.width*2+menubtn.right+ちょい*/
+		height:auto;
+	}
 }
 /*----------ヘッダー終わり----------*/
 
@@ -67,14 +77,18 @@ header{
 	z-index:10;
 }
 #menubtn>div{
+	position:absolute;
+	top:50%;
 	width:100%;
-	margin-top:50%;
+	transform:translateY(-50%);
 }
 #menubtn>div>div{
 	height:.15rem;
-	margin-top:.5rem;
 	border-radius:.5rem;
 	background-color:black;
+}
+#menubtn>div>div:nth-child(2){
+	margin:.5rem 0;
 }
 #menuCheckBox:checked~#menu{
 	display:block;
@@ -109,6 +123,7 @@ header{
 	padding:0;
 	border:1px black solid;
 	border-right:none;
+	box-sizing:border-box;
 }
 #menu a{
 	padding:.25rem;
