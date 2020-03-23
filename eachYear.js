@@ -21,8 +21,8 @@
   const f=doc.createDocumentFragment(),g=doc.createDocumentFragment();
   for(let i=0;i<2;i++){
     const i1=doc.createElement("img"),i2=doc.createElement("img");
-    i1.src="./img/booth/"+i+"jpg";
-    i2.src="./img/day/"+i+"jpg";
+    i1.src="./img/booth/"+i+".jpg";
+    i2.src="./img/day/"+i+".jpg";
     f.appendChild(i1);
     g.appendChild(i2);
   }
