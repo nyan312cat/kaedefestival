@@ -8,15 +8,9 @@
 	<link rel="stylesheet" href="./login.css">
 </head>
 <body>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
   <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
-
-  <!-- TODO: Add SDKs for Firebase products that you want to use
-       https://firebase.google.com/docs/web/setup#available-libraries -->
-  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-analytics.js"></script>
   <script>
-    // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyAK4ff_gTuXwYk_8KU2kBwmPIMzxSFv_3Y",
       authDomain: "kaedefestival.firebaseapp.com",
@@ -27,12 +21,10 @@
       appId: "1:400771010578:web:6d1d5b45054f86f5cf88cb",
       measurementId: "G-VDDMXE1VV0"
     };
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-    firebase.analytics();
 		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
   </script>
-</body>
+
 <header></header>
 
 <main>
@@ -41,4 +33,5 @@
 	<button type="button" id="login">ログイン</button>
 </main>
 <script src="./login.js"></script>
+</body>
 </html>
