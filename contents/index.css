@@ -22,22 +22,22 @@ main{
 /*----------main終わり-----------*/
 
 /*----------毎年の様子始まり----------*/
-#eachYearMain{
+.main{
 	padding-left:1rem;
 }
-#eachYearMain a{
+.main a{
 	display:block;
 	border-bottom:1px gray solid;
 	padding:.25rem;
 }
-#eachYearMain>li{
+.main>li{
 	list-style:none;
 	margin:0;
 	border:1px gray solid;
 	border-radius:.5rem;
 	margin-bottom:1rem;
 }
-#eachYearMain img{
+.main img{
 	width:45%;
 	height:auto;
 	display:inline;
@@ -47,7 +47,7 @@ main{
 
 @media only screen and (min-width:700px) and (max-width:1000px){
 /*pc分割状態で横２列表示*/
-	#eachYearMain>li{
+	.main>li{
 		width:45%;
 		display:inline-block;
 		margin:2%;
@@ -55,7 +55,7 @@ main{
 }
 @media only screen and (min-width:1000px){
 /*pcフル画面で横４列表示*/
-	#eachYearMain>li{
+	.main>li{
 		width:22%;
 		display:inline-block;
 		margin:1%;
