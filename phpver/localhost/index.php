@@ -24,7 +24,7 @@
 						return $res;
 				},"");
 			}
-			echo "<script>const fileRefs=[".mkRef('./*')."];</script>";
+			echo "<script>const fileRefs=[".mkRef('./*')."].filter(v=>v);</script>";
 		?>
 <main>
 	<div id="log">
