@@ -1,0 +1,142 @@
+/*aタグのスタイル*/
+a{
+	text-decoration:none;
+	color:black;
+}
+a:hover{
+	background-color:#eee;
+}
+a:focus{
+	background-color:#555;
+}
+/*pcでは改行しないbr*/
+@media only screen and (min-width:700px){
+	.noneIfpc{display:none}
+}
+
+/*----------main始まり-----------*/
+main{
+	margin-top:4rem;
+}
+/*----------main終わり-----------*/
+
+/*----------ヘッダー始まり----------*/
+header{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	display:inline-block;
+	background-color:#FFF;
+	box-sizing:border-box;
+	z-index:100;
+}
+#head{
+	padding:.2rem 0;
+	border-bottom:1px solid black;
+	text-align:center;
+}
+#schoolBadge{
+	display:inline-block;
+	height:2.5rem;
+	width:auto;
+	vertical-align:middle;
+}
+#logo{
+	display:inline-block;
+	height:3rem;
+	width:auto;
+	vertical-align:middle;
+}
+@media only screen and (max-width:calc(3rem * 7.2)){/* 7.2=1830/254(ロゴ画像の縦/横)*/
+	#logo{
+		width:calc(100% - 5.5rem);/*menubtn.width*2+menubtn.right+ちょい*/
+		height:auto;
+	}
+}
+/*----------ヘッダー終わり----------*/
+
+
+/*----------メニュー始まり----------*/
+#menuCheckBox{display:none}
+#close{
+	pointer-events:none;
+	z-index:1;
+	width:100vw;
+	height:100vh;
+	position:absolute;
+	top:0;
+	left:0;
+}
+#menubtn{
+	position:absolute;
+	top:0;
+	right:1rem;
+	width:2rem;
+	height:100%;
+	z-index:10;
+}
+#menubtn>div{
+	position:absolute;
+	top:50%;
+	width:100%;
+	transform:translateY(-50%);
+}
+#menubtn>div>div{
+	height:.15rem;
+	border-radius:.5rem;
+	background-color:black;
+}
+#menubtn>div>div:nth-child(2){
+	margin:.5rem 0;
+}
+#menuCheckBox:checked~#menu{
+	display:block;
+}
+#menuCheckBox:checked+#close{
+	pointer-events:auto;
+	background-color:rgba(0,0,0,0.2);
+}
+#menu{
+	display:none;
+	position:fixed;
+	right:0;
+	top:0;
+	width:10rem;
+	height:100%;
+	border-left:1px black solid;
+	background-color:#FFF;
+	margin:0;
+	padding:0;
+	z-index:10;
+}
+#menu li{
+	list-style:none;
+	position:relative;
+}
+#menu ul{
+	display:none;
+	z-index:10;
+	background-color:#fff;
+	position:absolute;
+	top:-1px;
+	padding:0;
+	border:1px black solid;
+	border-right:none;
+	box-sizing:border-box;
+}
+#menu a{
+	padding:.25rem;
+	border-bottom:1px silver solid;
+	display:block;
+	text-align:center;
+	vertical-align:middle;
+}
+#menu li:hover>ul{
+	display:block;
+	transform:translateX(calc(-100% - 1px));/*自分の大きさ＋border*/
+}
+#menu ul li:last-child>a{
+	border-bottom:none;
+}
+/*----------メニュー終わり----------*/
