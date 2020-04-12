@@ -1,4 +1,5 @@
 (()=>{
+  "use strict";
   const doc=document;
   const mime={"jpg":"image/jpeg","png":"image/png","gif":"image/gif","txt":"text/plain"};
   const log=doc.getElementById("log");

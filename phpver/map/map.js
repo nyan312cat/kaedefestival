@@ -1,4 +1,5 @@
-((doc)=>{
+(()=>{
+  "use strict";
   const position={
   	1:{
   		"多目的室":{
@@ -701,15 +702,7 @@
   		]
   	}
   };
-  /*
-    position={
-      floor(Number):{
-        roomName(String):{
-          top|left|bottom|right:Number,
-        }
-      }
-    }
-  */
+  const doc=document;
   const highlight=doc.getElementsByClassName("highlight"),
     imgId=["","firstFloor","secondFloor","thirdFloor","fourthFloor"];
   const getNum=str=>+str.replace("px","");
@@ -752,4 +745,4 @@
         };
       animation=window.requestAnimationFrame(smoothScroll);
     });
-})(document);
+})();

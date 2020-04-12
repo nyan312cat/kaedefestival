@@ -1,4 +1,5 @@
 (async()=>{
+	"use strict";
 	const doc=document;
 	const getHour=time=>{
 			time=time.split(":");

@@ -1,4 +1,5 @@
 (()=>{
+  "use strict";
   const doc=document;
   const datas={gym:[],hall:[],music:[],other:[]};
   const timeReg=/^\d{0,2}:\d{0,2}$/;

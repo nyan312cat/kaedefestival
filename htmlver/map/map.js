@@ -1,4 +1,5 @@
 (()=>{
+  "use strict";
   const position={
   	1:{
   		"多目的室":{
