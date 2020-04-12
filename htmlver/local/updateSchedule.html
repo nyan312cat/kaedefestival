@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>かえで祭　スケジュール設定</title>
+	<link rel="stylesheet" href="/common.css">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+</head>
+<body>
+
+<main>
+  <div id="vue">
+    <div v-for="(data,key) in datas" :id="key">
+      <h2>{{places[key]}}でのイベント</h2>
+      <div :id="'div_'+key">
+				<div  v-for="(d,i) in data">
+	        <input type="text" v-model="d[0]" @input="resetStyle(key,i*3)">
+	        <input type="text" v-model="d[1]" @input="resetStyle(key,i*3+1)">
+	        <input type="text" v-model="d[2]" @input="resetStyle(key,i*3+2)">
+				</div>
+			</div>
+      <form :id="'form_'+key">
+        <input type="text" placeholder="イベント名" @change="push" name="event">
+        <input type="text" placeholder="開始時刻" @change="push" name="start">
+        <input type="text" placeholder="終了時刻" @change="push" name="end">
+      </form>
+      <br>
+    </div>
+  </div>
+  <br>
+  <button type="button" id="upload">スケジュールを更新</button>
+</main>
+
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyDhyDZ7RTnJrKtrHFOB-6UVfyC-WybHMGU",
+    authDomain: "kaedefes-onlineinfo.firebaseapp.com",
+    databaseURL: "https://kaedefes-onlineinfo.firebaseio.com",
+    projectId: "kaedefes-onlineinfo",
+    storageBucket: "kaedefes-onlineinfo.appspot.com",
+    messagingSenderId: "186948420148",
+    appId: "1:186948420148:web:7858e29e36986fea9b0061"
+  };
+  firebase.initializeApp(firebaseConfig);
+</script>
+<script src="/common.js"></script>
+<script src="./upDateSchedule.js"></script>
+</body>
+</html>
