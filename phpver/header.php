@@ -30,6 +30,15 @@
 		<li><a href="/schedule.html">スケジュール</a></li>
 		<li><a>過年度の様子</a>
 			<ul id="eachYearMenu">
+				<?php
+					$dir=glob("./img/eachYear/*");
+					rsort($dir);
+					echo array_reduce($dir, function($res,$dir){
+						if(!is_dir($dir))return $res;
+						$year=basename($dir);
+						return "${res}<li><a href='/eachYear.php?year=${year}'>${year}年度</a></li>";
+					},"")
+				?>
 			</ul>
 		</li>
 		<li><a>並木中等HP</a>

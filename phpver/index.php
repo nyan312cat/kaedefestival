@@ -9,9 +9,20 @@
 </head>
 <body>
 
-<?=file_get_contents($_SERVER["DOCUMENT_ROOT"]."/header.html")?>
+<?php
+	$head="";
+	ob_start();
+	include($_SERVER["DOCUMENT_ROOT"]."/header.php");
+	$head=ob_get_contents();
+	ob_end_clean();
+	echo $head;
+?>
 
 <main>
+	<h2>現在の企画</h2>
+	<ul>
+
+	</ul>
 	<h2>各企画</h2>
 	<ul class="main">
 		<li><a href="/contents/grade/zenki.html">前期生の企画</a>
