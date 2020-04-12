@@ -8,30 +8,26 @@
 	<link rel="stylesheet" href="./login.css">
 </head>
 <body>
-  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
-  <script>
-    var firebaseConfig = {
-      apiKey: "AIzaSyAK4ff_gTuXwYk_8KU2kBwmPIMzxSFv_3Y",
-      authDomain: "kaedefestival.firebaseapp.com",
-      databaseURL: "https://kaedefestival.firebaseio.com",
-      projectId: "kaedefestival",
-      storageBucket: "kaedefestival.appspot.com",
-      messagingSenderId: "400771010578",
-      appId: "1:400771010578:web:6d1d5b45054f86f5cf88cb",
-      measurementId: "G-VDDMXE1VV0"
-    };
-    firebase.initializeApp(firebaseConfig);
-		firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
-  </script>
-
-<header></header>
-
+<!-- ヘッダーを入れる -->
 <main>
 	<label>ユーザー名<input type="text" id="user"></label>
 	<label>パスワード<input type="password" id="pass"></label>
 	<button type="button" id="login">ログイン</button>
 </main>
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+<script>
+	var firebaseConfig = {
+		apiKey: "AIzaSyDhyDZ7RTnJrKtrHFOB-6UVfyC-WybHMGU",
+		authDomain: "kaedefes-onlineinfo.firebaseapp.com",
+		databaseURL: "https://kaedefes-onlineinfo.firebaseio.com",
+		projectId: "kaedefes-onlineinfo",
+		storageBucket: "kaedefes-onlineinfo.appspot.com",
+		messagingSenderId: "186948420148",
+		appId: "1:186948420148:web:7858e29e36986fea9b0061"
+	};
+	firebase.initializeApp(firebaseConfig);
+</script>
 <script src="./login.js"></script>
 </body>
 </html>

@@ -1,15 +1,11 @@
-(()=>{
+(async()=>{
 	const doc=document;
-	/*
-	data形式
-	{
-		場所(gym, hall, music, other):[
-			[
-				"名前", "スタート時間", "終わり時間"
-			]
-		]
-	}
-	*/
+	const getHour=time=>{
+			time=time.split(":");
+			return +time[0]+(+time[1])/60;
+		};
+	const height=+getComputedStyle(doc.getElementById("getHeight")).height.replace("px","");
+	const plusHeight=+getComputedStyle(doc.getElementById("plusHeight")).height.replace("px","");
 /*	const data={
 			gym:[
 				["女装コンテスト", "9:10", "9:35"],
@@ -40,33 +36,31 @@
 				["Silent Beat", "13:50", "14:50"]
 			],
 			other:[]
-		};
-*/
-	const ent=Object.keys(data);
-	const getHour=time=>{
-			time=time.split(":");
-			return +time[0]+(+time[1])/60;
-		};
-	const height=+getComputedStyle(doc.getElementById("getHeight")).height.replace("px","");
-	const plusHeight=+getComputedStyle(doc.getElementById("plusHeight")).height.replace("px","");
-	for(const k of ent){
-		const f=doc.createDocumentFragment();
-		data[k].forEach(val=>{
-			const a=doc.createElement("a");
-			let start=val[1],
-				end=val[2];
-			a.innerHTML=val[0]+"<br>"+start+"〜"+end;
-			start=getHour(start);
-			end=getHour(end);
-			const diff=end-start;
-			a.style.height=diff*height+"px";
-			a.style.top=plusHeight+(start-8)*height+"px";
-			f.appendChild(a);
-		});
-		doc.getElementById(k).appendChild(f);
-	}
+		};*/
+	const db=firebase.firestore().collection("kaedefestival/kaede2020/scheduleTest");
+	const querySnap=await db.get();
+	querySnap.docs.forEach(async queryDocSp=>{
+		const place=queryDocSp.id,
+			querySp=await queryDocSp.ref.collection("datas").get(),
+			fragment=querySp.docs.reduce((res,docRef)=>{
+				const dbData=docRef.data();
+				if(!dbData["name"])return res;
+				const a=doc.createElement("a"),
+					start=getHour(dbData.start),
+					end=getHour(dbData.end),
+					diff=end-start;
+				a.innerHTML=dbData.name+"<br>"+dbData.start+"~"+dbData.end;
+				a.style.height=diff*height+"px";
+				a.style.top=plusHeight+(start-8)*height+"px";
+				res.appendChild(a);
+				return res;
+			},doc.createDocumentFragment());
+		doc.getElementById(place).append(fragment);
+	});
 	let time=new Date();
-	time=time.getHours()-8+time.getMinutes()/60;
+	const hour=time.getHours();
+	if(hour>=15||hour<8)return;
+	time=hour-8+time.getMinutes()/60;
 	time=time*height+plusHeight;
 	const p=doc.createElement("p");
 	p.id="now";

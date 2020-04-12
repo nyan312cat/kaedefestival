@@ -59,7 +59,7 @@
 	});
 	let time=new Date();
 	const hour=time.getHours();
-	if(hour>=15)return;
+	if(hour>=15||hour<8)return;
 	time=hour-8+time.getMinutes()/60;
 	time=time*height+plusHeight;
 	const p=doc.createElement("p");

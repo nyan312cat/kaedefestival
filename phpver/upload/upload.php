@@ -4,13 +4,12 @@
     echo $code;
     exit;
   }
-/*  set_error_handler(function($eno,$estr){
+  set_error_handler(function($eno,$estr){
     throw_error("*");
   },E_ALL);
   set_exception_handler(function($e){
     throw_error("*");
   });
-*/
   $mime=array("image/gif"=>"gif","image/jpeg"=>"jpg","image/png"=>"png","text/plain"=>"txt");
   if($_SERVER["REQUEST_METHOD"]!=="POST")
     throw_error("1");

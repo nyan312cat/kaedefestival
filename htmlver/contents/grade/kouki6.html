@@ -11,7 +11,20 @@
 <!-- ヘッダーを入れる -->
 <main>
 </main>
-
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
+<script>
+	var firebaseConfig = {
+		apiKey: "AIzaSyDhyDZ7RTnJrKtrHFOB-6UVfyC-WybHMGU",
+		authDomain: "kaedefes-onlineinfo.firebaseapp.com",
+		databaseURL: "https://kaedefes-onlineinfo.firebaseio.com",
+		projectId: "kaedefes-onlineinfo",
+		storageBucket: "kaedefes-onlineinfo.appspot.com",
+		messagingSenderId: "186948420148",
+		appId: "1:186948420148:web:7858e29e36986fea9b0061"
+	};
+	firebase.initializeApp(firebaseConfig);
+</script>
 <script src="/common.js"></script>
 <script src="./kouki.js"></script>
 </body>
