@@ -37,7 +37,7 @@
       }
     }
   });
-  const db=firebase.firestore().collection("/kaedefestival/kaede2020/scheduleTest")//本番で変更
+  const db=firebase.firestore().doc("/kaedefestival/kaede"+nenndo);//本番で変更
   document.getElementById("upload").addEventListener("click",()=>{
     let error=false;
     const doError=(key,i)=>{
@@ -64,10 +64,11 @@
     }
     if(error)return;
     const batch=firebase.firestore().batch();
+    const cols={};
     (async()=>
       await Promise.all(
         Object.keys(datas).map(async key=>{
-          const dbRef=db.doc("/"+key).collection("/datas"),
+          const dbRef=db.collection("/scheduleTest/datas"+key),
             data=datas[key];
           const docSnps=await Promise.all(data.map(d=>dbRef.where("name","==",d[0]).get()));
           docSnps.forEach((docSnp,i)=>{
@@ -76,6 +77,18 @@
               batch.set(dbRef.doc(),{name:d[0],start:d[1],end:d[2]});
             else
               batch.update(docSnp.docs[0].ref,{start:d[1],end:d[2]});
+          });
+          const timeRef=db.collection("timeTest");
+          data.forEach(d=>{
+            const hour=d[1].split(":")[0];
+            let col;
+            if(cols[hour])
+              col=cols[hour];
+            else{
+              col=await timeRef.where("hour","==",d[0].split(":")[0]).get();
+              cols[hour]=col;
+            }
+            col.docs[0].collection("datas");
           });
         })
       )

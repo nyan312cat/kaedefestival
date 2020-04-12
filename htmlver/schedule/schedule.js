@@ -38,14 +38,13 @@
 			],
 			other:[]
 		};*/
-	const db=firebase.firestore().collection("kaedefestival/kaede2020/scheduleTest");
-	const querySnap=await db.get();
-	querySnap.docs.forEach(async queryDocSp=>{
-		const place=queryDocSp.id,
-			querySp=await queryDocSp.ref.collection("datas").get(),
-			fragment=querySp.docs.reduce((res,docRef)=>{
+	const db=firebase.firestore().doc("kaedefestival/kaede2020/scheduleTest/datas");
+	["gym","hall","music","other"].forEach(async place=>{
+		const querySp=await db.collection(place).get();
+		if(!querySp.empty){
+			const f=querySp.docs.reduce((f,docRef)=>{
 				const dbData=docRef.data();
-				if(!dbData["name"])return res;
+				if(!dbData["name"])return f;
 				const a=doc.createElement("a"),
 					start=getHour(dbData.start),
 					end=getHour(dbData.end),
@@ -53,10 +52,11 @@
 				a.innerHTML=dbData.name+"<br>"+dbData.start+"~"+dbData.end;
 				a.style.height=diff*height+"px";
 				a.style.top=plusHeight+(start-8)*height+"px";
-				res.appendChild(a);
-				return res;
+				f.appendChild(a);
+				return f;
 			},doc.createDocumentFragment());
-		doc.getElementById(place).append(fragment);
+			doc.getElementById(place).append(f);
+		}
 	});
 	let time=new Date();
 	const hour=time.getHours();
