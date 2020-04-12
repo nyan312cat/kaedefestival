@@ -1,0 +1,63 @@
+/*aタグのスタイル*/
+a{
+	text-decoration:none;
+	color:black;
+}
+a:hover{
+	background-color:#eee;
+}
+a:focus{
+	background-color:#555;
+}
+/*pcでは改行しないbr*/
+@media only screen and (min-width:700px){
+	.noneIfpc{display:none}
+}
+
+
+/*----------main始まり-----------*/
+main{
+	margin-top:4rem;
+}
+/*----------main終わり-----------*/
+
+/*----------毎年の様子始まり----------*/
+.main{
+	padding-left:1rem;
+}
+.main a{
+	display:block;
+	border-bottom:1px gray solid;
+	padding:.25rem;
+}
+.main>li{
+	list-style:none;
+	margin:0;
+	border:1px gray solid;
+	border-radius:.5rem;
+	margin-bottom:1rem;
+}
+.main img{
+	width:45%;
+	height:auto;
+	display:inline;
+	vertical-align:middle;
+	margin:.25rem;
+}
+
+@media only screen and (min-width:700px) and (max-width:1000px){
+/*pc分割状態で横２列表示*/
+	.main>li{
+		width:45%;
+		display:inline-block;
+		margin:2%;
+	}
+}
+@media only screen and (min-width:1000px){
+/*pcフル画面で横４列表示*/
+	.main>li{
+		width:22%;
+		display:inline-block;
+		margin:1%;
+	}
+}
