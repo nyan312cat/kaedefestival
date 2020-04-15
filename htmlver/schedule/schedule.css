@@ -59,7 +59,7 @@ a:focus{
   width:100%;
   line-height:2rem;
 }
-#schedule>div:first-child span{
+#schedule>div:first-child span{/*時間を線の真横にする*/
   line-height:7rem;
   transform:translateY(-50%);
 }
@@ -77,7 +77,7 @@ a:focus{
 #schedule a:focus{
 	background-color:#555;
 }
-#now{
+#now{/*現在時刻の線*/
   width:60rem;
   position:absolute;
   left:0;

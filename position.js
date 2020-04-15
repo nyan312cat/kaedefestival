@@ -1,3 +1,14 @@
+/*
+  データ形式
+  floor(Num):{
+    "room":{top,left,bottom,right}
+    "WC":[{gender:"m,f,b",top,left,bottom,right}]
+  }
+  準備室・倉庫は名前変更した
+  一部名前省略
+	一つ目のオブジェクト：画像サイズに対する割合
+	二つ目のオブジェクト：px単位の座標
+*/
 {
 	1:{
 		"多目的室":{
@@ -704,15 +715,7 @@
 
 
 
-/*
-  データ形式
-  floor(Num):{
-    "room":{top,left,bottom,right}
-    "WC":[{gender:"m,f,b",top,left,bottom,right}]
-  }
-  準備室・倉庫は名前変更した
-  一部名前省略
-*/
+
 {
 	1:{
 		"多目的室":{

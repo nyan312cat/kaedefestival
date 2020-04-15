@@ -1,26 +1,3 @@
-/*aタグのスタイル*/
-a{
-	text-decoration:none;
-	color:black;
-}
-a:hover{
-	background-color:#eee;
-}
-a:focus{
-	background-color:#555;
-}
-/*pcでは改行しないbr*/
-@media only screen and (min-width:700px){
-	.noneIfpc{display:none}
-}
-
-
-/*----------main始まり-----------*/
-main{
-	margin-top:4rem;
-}
-/*----------main終わり-----------*/
-
 /*----------毎年の様子始まり----------*/
 .main{
 	padding-left:1rem;
