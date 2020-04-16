@@ -3,110 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>map</title>
-  <link rel="stylesheet" href="styles_wata.css">
+  <link rel="stylesheet" href="/map/w_styles.css">
   <?php
-  //calcuate the route
-  $INF=1e6;
-  $start=11;//スタートする場所 0~7,10,11
-  $goal=0;//ゴールする場所 0~7,10,11
-  $node_N=24;//ノードの数 番号が0から始まっていることに気をつける。
-  $edge_N=21;//エッジの数 番号が0から始まっていることに気をつける。
-  $edge_cost;//各エッジのコストを格納
-  $edge_number;//各エッジの番号を格納
-  //初期化
-  for($ii=0;$ii<$node_N;$ii++){
-    for($jj=0;$jj<$node_N;$jj++){
-      $edge_cost[$ii][$jj]=$INF;
-      $edge_number[$ii][$jj]=$INF;
-    }
-  }
-  //ノードとエッジの関係
-  $edge_number[0][12]=0;//エッジの番号
-  $edge_cost[0][12]=1;//エッジのコスト
-  $edge_number[1][13]=1;
-  $edge_cost[1][13]=1;
-  $edge_number[2][15]=2;
-  $edge_cost[2][15]=1;
-  $edge_number[3][16]=3;
-  $edge_cost[3][16]=1;
-  $edge_number[4][17]=4;
-  $edge_cost[4][17]=1;
-  $edge_number[5][18]=5;
-  $edge_cost[5][18]=1;
-  $edge_number[6][20]=6;
-  $edge_cost[6][20]=1;
-  $edge_number[7][21]=7;
-  $edge_cost[7][21]=1;
-  $edge_number[14][10]=8;
-  $edge_cost[14][10]=1;
-  $edge_number[19][11]=9;
-  $edge_cost[19][11]=1;
-  $edge_number[12][13]=10;
-  $edge_cost[12][13]=3;
-  $edge_number[13][14]=11;
-  $edge_cost[13][14]=2;
-  $edge_number[14][15]=12;
-  $edge_cost[14][15]=1;
-  $edge_number[15][16]=13;
-  $edge_cost[15][16]=3;
-  $edge_number[16][17]=14;
-  $edge_cost[16][17]=3;
-  $edge_number[17][18]=15;
-  $edge_cost[17][18]=3;
-  $edge_number[18][19]=16;
-  $edge_cost[18][19]=2;
-  $edge_number[19][20]=17;
-  $edge_cost[19][20]=1;
-  $edge_number[20][21]=18;
-  $edge_cost[20][21]=3;
-  $edge_number[18][23]=19;
-  $edge_cost[18][23]=9;
-  $edge_number[12][22]=20;
-  $edge_cost[12][22]=12;
-  //上記を反転したものも追加
-  for($ii=0;$ii<$node_N;$ii++){
-    for($jj=0;$jj<$node_N;$jj++){
-      if($edge_cost[$ii][$jj]!=$INF){
-        $edge_cost[$jj][$ii]=$edge_cost[$ii][$jj];
-        $edge_number[$jj][$ii]=$edge_number[$ii][$jj];
-      }
-    }
-  }
-
-  //ここから、そろぞれのノードに行くのに必要な最小コストを求める。
-  $node;
-  for($ii=0;$ii<$node_N;$ii++){//初期化
-    $node[$ii]=$INF;
-  }
-  $node[$start]=0;//スタートに到達するのに必要なコストは0
-  for($kk=0;$kk<$edge_N;$kk++){//N回ぐらいすると、全ての移動が終わり、それぞれのノードに最小コストが格納される。
-    //以下で全てのエッジを探す。
-    for($ii=0;$ii<$node_N;$ii++){//元のノード
-      for($jj=0;$jj<$node_N;$jj++){//先のノード
-        if($node[$jj]>$node[$ii]+$edge_cost[$ii][$jj]){//先のノードのコストよりも元のノード＋エッジのコストが低ければその道の方が最短なので、更新
-          $node[$jj]=$node[$ii]+$edge_cost[$ii][$jj];
-        }
-      }
-    }
-  }
-
-  //ここから、経路を探す。
-  $route;//経路になっていれば、trueにする。
-  for($ii=0;$ii<$edge_N;$ii++){//初期化
-    $route[$ii]=false;
-  }
-  $now=$goal;//ゴールから辿っていく。
-  for($ii=0;$ii<$edge_N;$ii++){//N回ぐらいで最悪の場合も道を辿れる。
-    for($jj=0;$jj<$node_N;$jj++){//先のノード（元のノードはそもそもnow）
-      if($node[$jj]==$node[$now]-$edge_cost[$now][$jj]){//一個前のノードと思われる時、
-        $route[$edge_number[$now][$jj]]=true;//経路になっているはずなので、trueにする。
-        $now=$jj;
-        break;
-      }
-    }
-    if($now==$start)break;//全てのノードを辿り、スタートに到達したら終了。
-  }
-  //calcuate finish
+  $start=$_GET['start'];
+  $goal=$_GET['goal'];
+  include('w_Dijkstra.php');
   // for($ii=0;$ii<$edge_N;$ii++){
   //   $route[$ii]=true;
   // }
