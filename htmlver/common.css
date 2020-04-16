@@ -16,7 +16,7 @@ a:focus{
 
 /*----------main始まり-----------*/
 main{
-	margin-top:4rem;
+	margin-top:4rem;/*header分のmargin-top*/
 }
 /*----------main終わり-----------*/
 

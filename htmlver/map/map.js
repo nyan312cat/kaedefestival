@@ -1,7 +1,11 @@
+/*
+urlパラメータ
+map.html?floor=(firstFloor||secondFloor||thirdFloor||fourthFloor)&room=(encodeURI("room")の返り値)
+*/
 (()=>{
   "use strict";
   const position={
-  	1:{
+  	"firstFloor":{
   		"多目的室":{
   			left:0.03408,
   			top:0.02284,
@@ -275,7 +279,7 @@
   			height:0.07066
   		}
   	},
-  	2:{
+  	"secondFloor":{
   		"総合実践室":{
   			left:0.03423,
   			top:0.00785,
@@ -477,7 +481,7 @@
   			height:0.01221
   		}
   	},
-  	3:{
+  	"thirdFloor":{
   		"6A":{
   			left:0.03543,
   			top:0.23595,
@@ -625,7 +629,7 @@
   			height:0.05066
   		}
   	},
-  	4:{
+  	"fourthFloor":{
   		"5A":{
   			left:0.04055,
   			top:0.19778,
@@ -703,46 +707,56 @@
   	}
   };
   const doc=document;
-  const highlight=doc.getElementsByClassName("highlight"),
-    imgId=["","firstFloor","secondFloor","thirdFloor","fourthFloor"];
-  const getNum=str=>+str.replace("px","");
-  const mapLink=doc.getElementsByClassName("mapLink"), l=mapLink.length;
-  let animation;
-  for(let i=0;i<l;i++)
-    mapLink[i].addEventListener("click",function(){
-      if(animation)cancelAnimationFrame(animation);//ダブルクリック対策
-      const room=this.dataset.room.split("/"),
-        pos=position[room[0]][room[1]],
-        img=doc.getElementById(imgId[room[0]]),
-        imgStyle=getComputedStyle(img),//表示されてるstyleを取得,img.styleはcssで指定した値
-        imgWidth=getNum(imgStyle.width),
-        imgHeight=getNum(imgStyle.height),
-        startPos=window.pageYOffset,
-        newPos={top:pos.top*imgHeight, left:pos.left*imgWidth, height:pos.height*imgHeight, width:pos.width*imgWidth},
-        diff=img.getBoundingClientRect().top+newPos.top-window.innerHeight/2-newPos.height/2,//scrollする量(px)
-        duration=Math.min(Math.abs(diff/3), 500);// 割る3は調整
-      let start=0;
-      const smoothScroll=time=>{
-          if(!start)start=time;
-          const persent=(time-start)/duration;
-          if(persent>1){
-            window.scroll(0,diff+startPos);
-            return highlightFnc();
-          }
-          window.scroll(0,-diff*persent*(persent-2)+startPos);
-          window.requestAnimationFrame(smoothScroll);
-        };
-      const highlightFnc=()=>{
-          const blur=Math.min(newPos.height, newPos.width)/8;
-          let css="top:"+(newPos.top+blur/2)+"px;";
-          css+="left:"+(newPos.left+blur/2)+"px;";
-          css+="height:"+(newPos.height-blur)+"px;";
-          css+="width:"+(newPos.width-blur)+"px;";
-          //+-blurは調整
-          css+="filter:blur("+blur+"px);";
-          highlight[+room[0]-1].setAttribute("style",css);
-          animation=undefined;
-        };
-      animation=window.requestAnimationFrame(smoothScroll);
+  const imgIds=["firstFloor","secondFloor","thirdFloor","fourthFloor"];
+  (()=>{
+    const params=loacation.search.slice(1).split("&").reduce((res,val)=>{
+      if(val.includes("=")){
+        val=val.split("=");
+        res[val[0]]=val[1];
+      }else res[val]=true;
+      return res;
+    },{});
+    if(!params.room||!params.floor)return;
+    params.floor=+params.floor;
+    try{
+      params.room=decodeURI(params.room);
+    }catch(){
+      params.room=false;
+    }
+    if(!params.room||!params.floor)return;
+    const tarpos=position[params.floor][params.room];
+    const tarcenter=tarpos.top+tarpos.height/2;
+    const imgRect=doc.getElementById(imgIds[params.floor]).getBoundingClientRect();
+    const diff=tarcenter*imgRect.height+imgRect.top;
+    window.scroll(diff);
+  })();
+  (()=>{
+    imgIds.forEach(id=>{
+      doc.getElementById(id).addEventListener("click",function(event){
+        //this===img
+        const clickX=event.pageX,
+          clickY=event.pageY;
+        const imgRect=this.getBoundingClientRect();
+        const imgHeight=imgRect.height,
+          imgWidth=imgRect.width;
+        const imgPosX=imgRect.left+window.pageXOffset,
+          imgPosY=imgRect.top+window.pageYOffset;
+        const x=clickX-imgPosX,
+          y=clickY-imgPosY;
+        const perX=x/imgWidth,
+          perY=y/imgHeight;
+        const datas=position[this.id];
+        let room;
+        for(room in datas){
+          const data=datas[room];
+          if(Array.isArray(data)){
+            if(data.reduce((res,data)=>res||(data.left<=perX&&data.top<=perY&&data.left+data.width>=perX&&data.top+data.height>=perY),false))
+              break;
+          }else if(data.left<=perX&&data.top<=perY&&data.left+data.width>=perX&&data.top+data.height>=perY)
+            break;
+        }
+        //階：this.id、部屋：rooom
+      });
     });
+  })();
 })();
