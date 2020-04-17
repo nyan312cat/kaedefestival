@@ -7,6 +7,7 @@
 		*/
 	const doc=document;
 	//各年度へのリンク作成・追加　始まり　（最新からスタート）
+	window.loadEnd=window.loadEnd||function(){console.log("loadEnd is not defined")};
 	if(!doc.getElementById("eachYearMenu"))return loadEnd(newest,oldest);
 	const f=doc.createDocumentFragment();
 	for(let i=oldest;i<newest;i++){

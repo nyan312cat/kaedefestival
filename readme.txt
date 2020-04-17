@@ -73,8 +73,8 @@
 　main内のaタグ（link）は削除する
 
 ・map/map.js・・・指定された部屋までスクロールする
-　現状では、class="mapLink"の要素からだが、urlパラメータで部屋を指定するように変更する
-　画像のクリックイベントから、各出し物のページへ飛ぶようにする
+　urlパラメータのfloor(first/second/third/fourth+floor)と、room(encodeURIされた部屋名)から、その部屋までスクロールする
+　画像をクリックすると、部屋を取得する
 
 ・map/map.css・・・画像と、ハイライトの設定
 

@@ -2,11 +2,34 @@
   position:relative;
 }
 .mapImg>img{
+}
+.mapImg>svg{
+  position:absolute;
+  top:0;
+  left:0;
+}
+/*.mapImg>img{
   width:100%;
   height:auto;
 }
+*/
 .highlight{
   display:inline-block;
   position:absolute;
-  background-color:rgba(255,140,0,0.5);
+  height:0;
+  width:0;
+}
+.animate{
+  animation:lighting 4s;
+}
+@keyframes lighting {
+  0%{
+    background-color:rgba(255,255,0,.8);
+  }
+  30%{
+    background-color:rgba(255,140,0,.8);
+  }
+  100%{
+    background-color:rgba(255,140,0,.3);
+  }
 }
