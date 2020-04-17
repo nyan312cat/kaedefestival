@@ -709,26 +709,40 @@ map.html?floor=(firstFloor||secondFloor||thirdFloor||fourthFloor)&room=(encodeUR
   const doc=document;
   const imgIds=["firstFloor","secondFloor","thirdFloor","fourthFloor"];
   (()=>{
-    const params=loacation.search.slice(1).split("&").reduce((res,val)=>{
+    const params=location.search.slice(1).split("&").reduce((res,val)=>{//urlパラメータ->object
       if(val.includes("=")){
         val=val.split("=");
         res[val[0]]=val[1];
       }else res[val]=true;
       return res;
     },{});
-    if(!params.room||!params.floor)return;
-    params.floor=+params.floor;
     try{
       params.room=decodeURI(params.room);
-    }catch(){
+    }catch(e){
       params.room=false;
     }
     if(!params.room||!params.floor)return;
-    const tarpos=position[params.floor][params.room];
-    const tarcenter=tarpos.top+tarpos.height/2;
-    const imgRect=doc.getElementById(imgIds[params.floor]).getBoundingClientRect();
-    const diff=tarcenter*imgRect.height+imgRect.top;
-    window.scroll(diff);
+    window.onload=()=>{//画像読み込み後に実行
+      const tarpos=position[params.floor][params.room];
+      const imgRect=doc.getElementById(params.floor).getBoundingClientRect();
+      const tarTop=tarpos.top*imgRect.height,
+        tarHeight=tarpos.height*imgRect.height;
+      const diff=tarTop+tarHeight/2+imgRect.top+window.scrollY-window.innerHeight/2;//部屋を画面の中心に
+      const HL=doc.getElementsByClassName("highlight")[imgIds.indexOf(params.floor)],
+        HLS=HL.style;
+      HLS.top=tarTop+"px";
+      HLS.left=tarpos.left*imgRect.width+"px";
+      HLS.height=tarHeight+"px";
+      HLS.width=tarpos.width*imgRect.width+"px";
+      setTimeout(()=>{//リロード時に、元の座標へスクロールするので、それが終わってから実行
+        window.scroll(0,diff);
+        HL.classList.add("animate");
+        setTimeout(()=>{
+          HL.classList.remove("animate");
+          HLS.backgroundColor="rgba(255,140,0,.3)";
+        },4000);
+      },50);
+    };
   })();
   (()=>{
     imgIds.forEach(id=>{
@@ -746,15 +760,21 @@ map.html?floor=(firstFloor||secondFloor||thirdFloor||fourthFloor)&room=(encodeUR
         const perX=x/imgWidth,
           perY=y/imgHeight;
         const datas=position[this.id];
-        let room;
+        let room,found;
         for(room in datas){
           const data=datas[room];
           if(Array.isArray(data)){
-            if(data.reduce((res,data)=>res||(data.left<=perX&&data.top<=perY&&data.left+data.width>=perX&&data.top+data.height>=perY),false))
+            if(data.reduce((res,data)=>res||(data.left<=perX&&data.top<=perY&&data.left+data.width>=perX&&data.top+data.height>=perY),false)){
+              found=true;
               break;
-          }else if(data.left<=perX&&data.top<=perY&&data.left+data.width>=perX&&data.top+data.height>=perY)
+            }
+          }else if(data.left<=perX&&data.top<=perY&&data.left+data.width>=perX&&data.top+data.height>=perY){
+            found=true;
             break;
+          }
         }
+        if(!found)return;
+        console.log(this.id,room);
         //階：this.id、部屋：rooom
       });
     });
