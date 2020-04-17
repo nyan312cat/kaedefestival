@@ -1,0 +1,62 @@
+<?php
+//このファイルを編集しなくても道や部屋を追加できます。
+//w_edge_data.phpを編集して下さい。
+
+//Dijkstra法を使って経路を求めています。
+//最終的には$routeにそれぞれのエッジが経路であるかを格納します。
+$INF=1e6;
+$edge_cost;//各エッジのコストを格納
+$edge_number;//各エッジの番号を格納
+include('w_edge_data.php');
+//初期化
+for($ii=0;$ii<$node_N;$ii++){
+  for($jj=0;$jj<$node_N;$jj++){
+    if($edge_cost[$ii][$jj]==0){
+      $edge_cost[$ii][$jj]=$INF;
+      $edge_number[$ii][$jj]=$INF;
+    }
+  }
+}
+//上記を反転したものも追加
+for($ii=0;$ii<$node_N;$ii++){
+  for($jj=0;$jj<$node_N;$jj++){
+    if($edge_cost[$ii][$jj]!=$INF){
+      $edge_cost[$jj][$ii]=$edge_cost[$ii][$jj];
+      $edge_number[$jj][$ii]=$edge_number[$ii][$jj];
+    }
+  }
+}
+
+//ここから、そろぞれのノードに行くのに必要な最小コストを求める。
+$node;
+for($ii=0;$ii<$node_N;$ii++){//初期化
+  $node[$ii]=$INF;
+}
+$node[$start]=0;//スタートに到達するのに必要なコストは0
+for($kk=0;$kk<$edge_N;$kk++){//N回ぐらいすると、全ての移動が終わり、それぞれのノードに最小コストが格納される。
+  //以下で全てのエッジを探す。
+  for($ii=0;$ii<$node_N;$ii++){//元のノード
+    for($jj=0;$jj<$node_N;$jj++){//先のノード
+      if($node[$jj]>$node[$ii]+$edge_cost[$ii][$jj]){//先のノードのコストよりも元のノード＋エッジのコストが低ければその道の方が最短なので、更新
+        $node[$jj]=$node[$ii]+$edge_cost[$ii][$jj];
+      }
+    }
+  }
+}
+
+//ここから、経路を探す。
+$route;//経路になっていれば、trueにする。
+for($ii=0;$ii<$edge_N;$ii++){//初期化
+  $route[$ii]=false;
+}
+$now=$goal;//ゴールから辿っていく。
+for($ii=0;$ii<$edge_N;$ii++){//N回ぐらいで最悪の場合も道を辿れる。
+  for($jj=0;$jj<$node_N;$jj++){//先のノード（元のノードはそもそもnow）
+    if($node[$jj]==$node[$now]-$edge_cost[$now][$jj]){//一個前のノードと思われる時、
+      $route[$edge_number[$now][$jj]]=true;//経路になっているはずなので、trueにする。
+      $now=$jj;
+      break;
+    }
+  }
+  if($now==$start)break;//全てのノードを辿り、スタートに到達したら終了。
+}
