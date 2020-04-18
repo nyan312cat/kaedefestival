@@ -1,6 +1,24 @@
+.first_floor{
+  background-image: url(/img/map/1.jpg);
+  background-repeat: no-repeat;
+  /* background-size: 500px; */
+  height: 1401px;
+}
+.second_floor{
+  background-image: url(/img/map/2.jpg);
+  background-repeat: no-repeat;
+  /* background-size: 500px; */
+  height: 1401px;
+}
+.third_floor{
+  background-image: url(/img/map/3.jpg);
+  background-repeat: no-repeat;
+  /* background-size: 500px; */
+  height: 1401px;
+}
 .four_floor{
   background-image: url(/img/map/4.jpg);
   background-repeat: no-repeat;
   /* background-size: 500px; */
-  height: 1300px;
+  height: 1401px;
 }

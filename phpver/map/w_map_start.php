@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <title>map</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>かえで祭　校内図</title>
   <link rel="stylesheet" href="/common.css">
   <link rel="stylesheet" href="/map/w_styles.css">
 </head>
@@ -17,7 +18,7 @@
   ?>
 
   <div class="four_floor">
-    <svg width="1300" height="1300">
+    <svg viewBox="0 0 939 1401" width="939" height="1401">
       <!-- ここから、部屋の出力 -->
       <?php
       //roomを押された時のURLを決める。

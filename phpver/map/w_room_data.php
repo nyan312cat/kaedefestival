@@ -1,7 +1,8 @@
 <?php
+include('position.php');
 $room_N=12;
 $x;$y;$rx;$ry;$width;$height;
-$x[0]="40"; $y[0]="287"; $rx[0]="0"; $ry[0]="0"; $width[0]="75"; $height[0]="114";//node0
+$x[0]=$position[4]["5A"][left]; $y[0]=$position[4]["5A"][top]; $rx[0]="0"; $ry[0]="0"; $width[0]=$position[4]["5A"][width]; $height[0]=$position[4]["5A"][height];//node0
 $x[1]="40"; $y[1]="401"; $rx[1]="0"; $ry[1]="0"; $width[1]="75"; $height[1]="114";//node1
 $x[2]="40"; $y[2]="515"; $rx[2]="0"; $ry[2]="0"; $width[2]="75"; $height[2]="114";//node2
 $x[3]="40"; $y[3]="629"; $rx[3]="0"; $ry[3]="0"; $width[3]="75"; $height[3]="114";//node3
