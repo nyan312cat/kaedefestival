@@ -29,6 +29,7 @@
       function room_fill($i,$start,$goal){
         echo "style=\"fill:blue;stroke:black;stroke-width:5;opacity:0.0\"";
       }
+      $floor=4;
       include('w_room.php');
       ?>
     </svg>

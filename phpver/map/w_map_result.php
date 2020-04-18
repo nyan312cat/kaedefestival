@@ -57,6 +57,7 @@
             echo "style=\"fill:white;opacity:0.0\"";
         endif;
       }
+      $floor=4;
       include('w_room.php');
       ?>
       <!-- ここから、道の出力 -->
