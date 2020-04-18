@@ -44,14 +44,14 @@
       <!-- ここから、部屋の出力 -->
       <?php
       //roomを押された時のURLを決める。
-      function room_url($i,$start){
-        echo "\"/map/$i\"";
+      function room_url($key,$start){
+        echo "\"/map/$key\"";
       }
       //roomの塗りつぶし方を決める。
-      function room_fill($i,$start,$goal){
-        if($start==$i):
+      function room_fill($key,$start,$goal){
+        if($start==$key):
           echo "style=\"fill:blue;opacity:0.5\"";
-        elseif($goal==$i):
+        elseif($goal==$key):
             echo "style=\"fill:skyblue;opacity:0.5\"";
         else:
             echo "style=\"fill:white;opacity:0.0\"";
@@ -63,8 +63,8 @@
       <!-- ここから、道の出力 -->
       <?php
       //roadの塗りつぶし方を決める。
-      function road_fill($j,$route){
-        if($route[$j]):
+      function road_fill($key,$route){
+        if($route[$key]):
           echo "style=\"stroke:red;stroke-width:20\"";
         endif;
       }

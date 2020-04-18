@@ -7,38 +7,29 @@
 $INF=1e6;
 $edge_cost;//各エッジのコストを格納
 $edge_number;//各エッジの番号を格納
-include('w_edge_data.php');
+include('w_edge_data.php');//キー取得のため
 //初期化
-for($ii=0;$ii<$node_N;$ii++){
-  for($jj=0;$jj<$node_N;$jj++){
-    if($edge_cost[$ii][$jj]==0){
-      $edge_cost[$ii][$jj]=$INF;
-      $edge_number[$ii][$jj]=$INF;
-    }
+foreach($edge_number as $key1=>$value){//一つ目の添字 key1
+  foreach($edge_number as $key2=>$value){//二つ目の添字 key2
+    $edge_number[$key1][$key2]=INF;
+    $edge_cost[$key1][$key2]=INF;
   }
 }
-//上記を反転したものも追加
-for($ii=0;$ii<$node_N;$ii++){
-  for($jj=0;$jj<$node_N;$jj++){
-    if($edge_cost[$ii][$jj]!=$INF){
-      $edge_cost[$jj][$ii]=$edge_cost[$ii][$jj];
-      $edge_number[$jj][$ii]=$edge_number[$ii][$jj];
-    }
-  }
-}
+include('w_edge_data.php');//値代入のため
 
 //ここから、そろぞれのノードに行くのに必要な最小コストを求める。
 $node;
-for($ii=0;$ii<$node_N;$ii++){//初期化
-  $node[$ii]=$INF;
+//初期化
+foreach($edge_number as $key=>$value){//全てのキー(ノードの名前)を取り出す。
+  $node[$key]=$INF;
 }
 $node[$start]=0;//スタートに到達するのに必要なコストは0
-for($kk=0;$kk<$edge_N;$kk++){//N回ぐらいすると、全ての移動が終わり、それぞれのノードに最小コストが格納される。
+for($kk=0;$kk<count($node);$kk++){//N回ぐらいすると、全ての移動が終わり、それぞれのノードに最小コストが格納される。
   //以下で全てのエッジを探す。
-  for($ii=0;$ii<$node_N;$ii++){//元のノード
-    for($jj=0;$jj<$node_N;$jj++){//先のノード
-      if($node[$jj]>$node[$ii]+$edge_cost[$ii][$jj]){//先のノードのコストよりも元のノード＋エッジのコストが低ければその道の方が最短なので、更新
-        $node[$jj]=$node[$ii]+$edge_cost[$ii][$jj];
+  foreach($edge_number as $key1=>$value){//元のノード key1
+    foreach($edge_number as $key2=>$value){//先のノード key2
+      if($node[$key2]>$node[$key1]+$edge_cost[$key1][$key2]){//先のノードのコストよりも元のノード＋エッジのコストが低ければその道の方が最短なので、更新
+        $node[$key2]=$node[$key1]+$edge_cost[$key1][$key2];
       }
     }
   }
@@ -50,11 +41,11 @@ for($ii=0;$ii<$edge_N;$ii++){//初期化
   $route[$ii]=false;
 }
 $now=$goal;//ゴールから辿っていく。
-for($ii=0;$ii<$edge_N;$ii++){//N回ぐらいで最悪の場合も道を辿れる。
-  for($jj=0;$jj<$node_N;$jj++){//先のノード（元のノードはそもそもnow）
-    if($node[$jj]==$node[$now]-$edge_cost[$now][$jj]){//一個前のノードと思われる時、
-      $route[$edge_number[$now][$jj]]=true;//経路になっているはずなので、trueにする。
-      $now=$jj;
+for($ii=0;$ii<count($node);$ii++){//N回ぐらいで最悪の場合も道を辿れる。
+  foreach($edge_number as $key=>$value){//先のノード key（元のノードはそもそもnow）
+    if($node[$key]==$node[$now]-$edge_cost[$now][$key]){//一個前のノードと思われる時、
+      $route[$edge_number[$now][$key]]=true;//経路になっているはずなので、trueにする。
+      $now=$key;
       break;
     }
   }

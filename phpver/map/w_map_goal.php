@@ -27,12 +27,12 @@
       <!-- ここから、部屋の出力 -->
       <?php
       //roomを押された時のURLを決める。
-      function room_url($i,$start){
-        echo "\"/map/w_map_result.php/?start=$start&goal=$i\"";
+      function room_url($key,$start){
+        echo "\"/map/w_map_result.php/?start=$start&goal=$key\"";
       }
       //roomの塗りつぶし方を決める。
-      function room_fill($i,$start,$goal){
-        echo "style=\"fill:blue;stroke:black;stroke-width:5;opacity:0.0\"";
+      function room_fill($key,$start,$goal){
+        echo 'style="fill:blue;stroke:black;stroke-width:5;opacity:0.0"';
       }
       $floor=4;
       include('w_room.php');
