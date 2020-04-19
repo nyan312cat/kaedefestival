@@ -1,7 +1,11 @@
+/*
+urlパラメータ
+map.html?floor=(firstFloor||secondFloor||thirdFloor||fourthFloor)&room=(encodeURI("room")の返り値)
+*/
 (()=>{
   "use strict";
   const position={
-  	1:{
+  	"firstFloor":{
   		"多目的室":{
   			left:0.03408,
   			top:0.02284,
@@ -275,7 +279,7 @@
   			height:0.07066
   		}
   	},
-  	2:{
+  	"secondFloor":{
   		"総合実践室":{
   			left:0.03423,
   			top:0.00785,
@@ -477,7 +481,7 @@
   			height:0.01221
   		}
   	},
-  	3:{
+  	"thirdFloor":{
   		"6A":{
   			left:0.03543,
   			top:0.23595,
@@ -625,7 +629,7 @@
   			height:0.05066
   		}
   	},
-  	4:{
+  	"fourthFloor":{
   		"5A":{
   			left:0.04055,
   			top:0.19778,
@@ -703,46 +707,76 @@
   	}
   };
   const doc=document;
-  const highlight=doc.getElementsByClassName("highlight"),
-    imgId=["","firstFloor","secondFloor","thirdFloor","fourthFloor"];
-  const getNum=str=>+str.replace("px","");
-  const mapLink=doc.getElementsByClassName("mapLink"), l=mapLink.length;
-  let animation;
-  for(let i=0;i<l;i++)
-    mapLink[i].addEventListener("click",function(){
-      if(animation)cancelAnimationFrame(animation);//ダブルクリック対策
-      const room=this.dataset.room.split("/"),
-        pos=position[room[0]][room[1]],
-        img=doc.getElementById(imgId[room[0]]),
-        imgStyle=getComputedStyle(img),//表示されてるstyleを取得,img.styleはcssで指定した値
-        imgWidth=getNum(imgStyle.width),
-        imgHeight=getNum(imgStyle.height),
-        startPos=window.pageYOffset,
-        newPos={top:pos.top*imgHeight, left:pos.left*imgWidth, height:pos.height*imgHeight, width:pos.width*imgWidth},
-        diff=img.getBoundingClientRect().top+newPos.top-window.innerHeight/2-newPos.height/2,//scrollする量(px)
-        duration=Math.min(Math.abs(diff/3), 500);// 割る3は調整
-      let start=0;
-      const smoothScroll=time=>{
-          if(!start)start=time;
-          const persent=(time-start)/duration;
-          if(persent>1){
-            window.scroll(0,diff+startPos);
-            return highlightFnc();
+  const imgIds=["firstFloor","secondFloor","thirdFloor","fourthFloor"];
+  (()=>{
+    const params=location.search.slice(1).split("&").reduce((res,val)=>{//urlパラメータ->object
+      if(val.includes("=")){
+        val=val.split("=");
+        res[val[0]]=val[1];
+      }else res[val]=true;
+      return res;
+    },{});
+    try{
+      params.room=decodeURI(params.room);
+    }catch(e){
+      params.room=false;
+    }
+    if(!params.room||!params.floor)return;
+    window.onload=()=>{//画像読み込み後に実行
+      const tarpos=position[params.floor][params.room];
+      const imgRect=doc.getElementById(params.floor).getBoundingClientRect();
+      const tarTop=tarpos.top*imgRect.height,
+        tarHeight=tarpos.height*imgRect.height;
+      const diff=tarTop+tarHeight/2+imgRect.top+window.scrollY-window.innerHeight/2;//部屋を画面の中心に
+      const HL=doc.getElementsByClassName("highlight")[imgIds.indexOf(params.floor)],
+        HLS=HL.style;
+      HLS.top=tarTop+"px";
+      HLS.left=tarpos.left*imgRect.width+"px";
+      HLS.height=tarHeight+"px";
+      HLS.width=tarpos.width*imgRect.width+"px";
+      setTimeout(()=>{//リロード時に、元の座標へスクロールするので、それが終わってから実行
+        window.scroll(0,diff);
+        HL.classList.add("animate");
+        setTimeout(()=>{
+          HL.classList.remove("animate");
+          HLS.backgroundColor="rgba(255,140,0,.3)";
+        },4000);
+      },50);
+    };
+  })();
+  (()=>{
+    imgIds.forEach(id=>{
+      doc.getElementById(id).addEventListener("click",function(event){
+        //this===img
+        const clickX=event.pageX,
+          clickY=event.pageY;
+        const imgRect=this.getBoundingClientRect();
+        const imgHeight=imgRect.height,
+          imgWidth=imgRect.width;
+        const imgPosX=imgRect.left+window.pageXOffset,
+          imgPosY=imgRect.top+window.pageYOffset;
+        const x=clickX-imgPosX,
+          y=clickY-imgPosY;
+        const perX=x/imgWidth,
+          perY=y/imgHeight;
+        const datas=position[this.id];
+        let room,found;
+        for(room in datas){
+          const data=datas[room];
+          if(Array.isArray(data)){
+            if(data.reduce((res,data)=>res||(data.left<=perX&&data.top<=perY&&data.left+data.width>=perX&&data.top+data.height>=perY),false)){
+              found=true;
+              break;
+            }
+          }else if(data.left<=perX&&data.top<=perY&&data.left+data.width>=perX&&data.top+data.height>=perY){
+            found=true;
+            break;
           }
-          window.scroll(0,-diff*persent*(persent-2)+startPos);
-          window.requestAnimationFrame(smoothScroll);
-        };
-      const highlightFnc=()=>{
-          const blur=Math.min(newPos.height, newPos.width)/8;
-          let css="top:"+(newPos.top+blur/2)+"px;";
-          css+="left:"+(newPos.left+blur/2)+"px;";
-          css+="height:"+(newPos.height-blur)+"px;";
-          css+="width:"+(newPos.width-blur)+"px;";
-          //+-blurは調整
-          css+="filter:blur("+blur+"px);";
-          highlight[+room[0]-1].setAttribute("style",css);
-          animation=undefined;
-        };
-      animation=window.requestAnimationFrame(smoothScroll);
+        }
+        if(!found)return;
+        console.log(this.id,room);
+        //階：this.id、部屋：rooom
+      });
     });
+  })();
 })();

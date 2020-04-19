@@ -1,66 +1,145 @@
+.none{
+  height: 50px;
+  height: 3.2rem;
+}
+.menu{
+  display: flex;
+}
+.switch{
+  width: 30px;
+  width: 1.9rem;
+  height: 70px;
+  height: 4.3rem;
+  border-radius: 10px;
+  border-radius: 0.6rem;
+  margin-top: auto;
+  margin-bottom: auto;
+  background-color: #AAA;
+  line-height: 70px;
+  line-height: 4.3rem;
+  font-weight: 1000;
+  font-size: 16px;
+  font-size: 1rem;
+}
 .start{
   font-size: 30px;
-  width: 350px;
+  font-size: 1.9rem;
+  width: 430px;
+  width: 27rem;
   height: 70px;
+  height: 4.3rem;
   line-height: 60px;
+  line-height: 3.8rem;
   border: solid;
   border-radius: 10px;
+  border-radius: 0.6rem;
   margin: 5px;
+  margin: 0.3rem;
   display: flex;
 }
 .start .explanation{
   font-weight: 500;
   background-color: skyblue;
   margin: 5px;
+  margin: 0.3rem;
   border-radius: 10px;
+  border-radius: 0.6rem;
   color: white;
 }
 .goal{
   font-size: 30px;
-  width: 350px;
+  font-size: 1.9rem;
+  width: 430px;
+  width: 27rem;
   height: 70px;
+  height: 4.3rem;
   line-height: 60px;
+  line-height: 3.8rem;
   border: solid;
   border-radius: 10px;
+  border-radius: 0.6rem;
   margin: 5px;
+  margin: 0.3rem;
   display: flex;
 }
 .goal .explanation{
   font-weight: 500;
   background-color: pink;
   margin: 5px;
+  margin: 0.3rem;
   border-radius: 10px;
+  border-radius: 0.6rem;
   color: white;
 }
 .position{
   line-height: 70px;
+  line-height: 4.3rem;
 }
 .null{
   line-height: 70px;
+  line-height: 4.3rem;
   color: gray;
   font-size: 20px;
+  font-size: 1.2rem;
 }
-.first_floor{
-  background-image: url(/img/map/1.jpg);
-  background-repeat: no-repeat;
-  /* background-size: 500px; */
-  height: 1401px;
+/* img{
+  max-width: 100%;
+  height: auto;
+} */
+@media screen and (max-width: 480px){
+  .none{
+    height: 50px;
+  }
+  .switch{
+    width: 18px;
+    height: 42px;
+    border-radius: 6px;
+    line-height: 42px;
+    font-size: 9px;
+  }
+  .start{
+    font-size: 18px;
+    width: 256px;
+    height: 42px;
+    line-height: 36px;
+    border-radius: 6px;
+    margin: 3px;
+    display: flex;
+  }
+  .start .explanation{
+    margin: 3px;
+    border-radius: 6px;
+  }
+  .goal{
+    font-size: 18px;
+    width: 256px;
+    height: 42px;
+    line-height: 36px;
+    border-radius: 6px;
+    margin: 3px;
+    display: flex;
+  }
+  .goal .explanation{
+    margin: 3px;
+    border-radius: 6px;
+  }
+  .position{
+    line-height: 42px;
+  }
+  .null{
+    line-height: 42px;
+    font-size: 11px;
+  }
 }
-.second_floor{
-  background-image: url(/img/map/2.jpg);
-  background-repeat: no-repeat;
-  /* background-size: 500px; */
-  height: 1401px;
-}
-.third_floor{
-  background-image: url(/img/map/3.jpg);
-  background-repeat: no-repeat;
-  /* background-size: 500px; */
-  height: 1401px;
-}
-.four_floor{
-  background-image: url(/img/map/4.jpg);
-  background-repeat: no-repeat;
-  /* background-size: 500px; */
-  height: 1401px;
+@media(prefers-color-scheme: dark){
+  body{
+    background-color: #000;
+    color: white;
+  }
+  .start .explanation{
+    color: black;
+  }
+  .goal .explanation{
+    color: black;
+  }
 }
