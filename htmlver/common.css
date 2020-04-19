@@ -9,6 +9,13 @@ a:hover{
 a:focus{
 	background-color:#555;
 }
+.menuMark{
+	border:.5rem transparent solid;
+	border-left:.5rem black solid;
+	position:absolute;
+	top:calc(50% - .5rem);
+	right:-.25rem;
+}
 /*pcでは改行しないbr*/
 @media only screen and (min-width:700px){
 	.noneIfpc{display:none}
@@ -62,12 +69,12 @@ header{
 	height:100vh;
 	position:absolute;
 	top:0;
-	left:0;
+	right:0;
 }
 #menubtn{
 	position:absolute;
 	top:0;
-	right:1rem;
+	left:1rem;
 	width:2rem;
 	height:100%;
 	z-index:10;
@@ -96,11 +103,11 @@ header{
 #menu{
 	display:none;
 	position:fixed;
-	right:0;
+	left:0;
 	top:0;
 	width:10rem;
 	height:100%;
-	border-left:1px black solid;
+	border-right:1px black solid;
 	background-color:#FFF;
 	margin:0;
 	padding:0;
@@ -116,9 +123,10 @@ header{
 	background-color:#fff;
 	position:absolute;
 	top:-1px;
+	right:-1px;
 	padding:0;
 	border:1px black solid;
-	border-right:none;
+	border-left:none;
 	box-sizing:border-box;
 }
 #menu a{
@@ -130,7 +138,7 @@ header{
 }
 #menu li:hover>ul{
 	display:block;
-	transform:translateX(calc(-100% - 1px));/*自分の大きさ＋border*/
+	transform:translateX(100%);/*自分の大きさ＋border*/
 }
 #menu ul li:last-child>a{
 	border-bottom:none;
