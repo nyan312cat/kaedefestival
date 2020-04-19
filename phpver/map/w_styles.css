@@ -1,3 +1,45 @@
+.start{
+  font-size: 30px;
+  width: 350px;
+  height: 70px;
+  line-height: 60px;
+  border: solid;
+  border-radius: 10px;
+  margin: 5px;
+  display: flex;
+}
+.start .explanation{
+  font-weight: 500;
+  background-color: skyblue;
+  margin: 5px;
+  border-radius: 10px;
+  color: white;
+}
+.goal{
+  font-size: 30px;
+  width: 350px;
+  height: 70px;
+  line-height: 60px;
+  border: solid;
+  border-radius: 10px;
+  margin: 5px;
+  display: flex;
+}
+.goal .explanation{
+  font-weight: 500;
+  background-color: pink;
+  margin: 5px;
+  border-radius: 10px;
+  color: white;
+}
+.position{
+  line-height: 70px;
+}
+.null{
+  line-height: 70px;
+  color: gray;
+  font-size: 20px;
+}
 .first_floor{
   background-image: url(/img/map/1.jpg);
   background-repeat: no-repeat;
