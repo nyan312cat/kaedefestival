@@ -2,11 +2,8 @@
   "use strict";
   const doc=document;
   const tar=doc.getElementById("currentEvents");
-  const noEvents=()=>{//現在のイベントがないときの処理
-    const li=doc.createElement("li");
-    li.textContent="現在のイベントはありません";
-    tar.appendChild(li);
-  };
+  const noEvents=()=>//現在のイベントがないときの処理
+    tar.innerHTML="現在のイベントはありません<br><li><a href='./schedule/schedule.html'>スケジュール</a></li>";
   window.loadEnd=async nenndo=>{
     const db=firebase.firestore().collection("kaedefestival").doc("kaede"+nenndo).collection("timeTest");//本番で変更
     const nowHour=new Date().getHours();
@@ -21,7 +18,7 @@
     datasRef.docs.forEach(doc=>{
       const data=doc.data();
       const li=doc.createElement("li");
-      li.innerHTML=data.name+"<br>"+data.start+"～"+data.end+"<br>場所 : "+(places[data.place]||data.place);//placesにない場所のときはそのまま表示
+      li.innerHTML="<a>"+data.name+"<br>"+data.start+"～"+data.end+"<br>場所 : "+(places[data.place]||data.place)+"</a>";//placesにない場所のときはそのまま表示
       f.appendChild(li);
     });
     tar.appendChild(f);
