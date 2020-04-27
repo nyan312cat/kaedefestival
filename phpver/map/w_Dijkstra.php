@@ -1,11 +1,13 @@
 <?php
 //このファイルを編集しなくても道や部屋を追加できます。
-//position_road.phpを編集して下さい。
+//position_road.jsonを編集して下さい。
 
 //Dijkstra法を使って経路を求めています。
 //最終的には$routeにそれぞれのエッジが経路であるかを格納します。
 $INF=1e6;
-include('position_road.php');
+//position_road.jsonの読み込み
+$json=file_get_contents('./position_road.json');
+$position_road=json_decode($json,true);
 //ここから、そろぞれのノードに行くのに必要な最小コストを求める。
 $node;
 //初期化
