@@ -1,18 +1,15 @@
-.mapImg{
-  position:relative;
+.map{
+  height:100vh;
 }
-.mapImg>img{
+.map>*{
+  pointer-events:fill;
+  fill:none;
+  stroke:black;
+  stroke-width:1;
 }
-.mapImg>svg{
-  position:absolute;
-  top:0;
-  left:0;
+.vertical{
+  writing-mode:tb-rl;
 }
-/*.mapImg>img{
-  width:100%;
-  height:auto;
-}
-*/
 .highlight{
   display:inline-block;
   position:absolute;
@@ -30,6 +27,6 @@
     background-color:rgba(255,140,0,.8);
   }
   100%{
-    background-color:rgba(255,140,0,.3);
+    background-color:rgba(255,140,0,0);
   }
 }

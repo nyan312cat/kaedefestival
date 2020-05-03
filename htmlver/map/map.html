@@ -10,28 +10,168 @@
 <body>
 <!-- ヘッダーを入れる -->
 <main>
-  <div class="mapImg">
-    <img src="/img/map/1.jpg" id="firstFloor">
-		<svg viewBox="0 0 939 1401" width="939" height="1401">
-			<rect x="32" y="32" width="2" height="162" fill="red"></rect>
-			<rect x="32" y="32" width="162" height="2" fill="red"></rect>
-			<rect x="32" y="255" width="2" height="831" fill="red"></rect>
-		</svg>
-    <div class="highlight"></div>
-  </div>
-  <div class="mapImg">
-    <img src="/img/map/2.jpg" id="secondFloor">
-    <div class="highlight"></div>
-  </div>
-  <div class="mapImg">
-    <img src="/img/map/3.jpg" id="thirdFloor">
-    <div class="highlight"></div>
-  </div>
-  <div class="mapImg">
-    <img src="/img/map/4.jpg" id="fourthFloor">
-    <div class="highlight"></div>
-  </div>
-	<a class="mapLink" data-room="1/生徒ホール">link</a><!-- テスト用 -->
+	<!--
+		data-page
+
+		club:club/club.html
+		vol:club/volunteer.html
+		kouki4:grade/kouki4.html
+		kouki5:grade/kouki5.html
+		kouki6:grade/kouki6.html
+		zenki:grade/zennki.html
+		gym:place/gym.html
+		hall:place/hall.html
+		music:place/music.html
+		other:place/other.html
+		jissenn:foods/jissennshitu.html
+		kougishitu:kougishitu.html
+	-->
+	<svg viewBox="0 0 567 1137" class="map" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<path d="M 66 1 h 40
+		         M 66 151 v 60
+						 M 171 496 V 666
+						 M 121 826 V 906
+						 l 60 40 h 310 v 190 h -310 v -150 L 71 906
+						 M 121 211 v 55 h 50 v -55 z m 5 47.5 v -10 h 10 v -10 h 10 v -10 h 10 v -10 h 10
+						 M 121 666 v 40 h 50 v -40 z m 5 35 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10
+						 M 371 296 v 40 h 50 v -40 z m 5 35 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10
+						 M 181 986 h 40 v 50 h -40 z m 5 40 v -10 h 10 v -10 h 10 v -10 h 10
+		"/>
+		<rect x="1" y="1" width="65" height="150" id="room-100"/>
+		<rect x="106" y="1" width="65" height="150" id="room-101"/>
+		<rect x="106" y="151" width="65" height="60" id="room-102"/>
+		<path d="M 1 211 h 120 v 55 l -50 65 h -70 z" id="room-103"/>
+		<rect x="1" y="331" width="70" height="80" id="room-104"/>
+		<rect x="1" y="411" width="70" height="40" id="room-105"/>
+		<rect x="1" y="451" width="70" height="80" id="room-106"/>
+		<rect x="1" y="531" width="70" height="70" id="room-107"/>
+		<rect x="1" y="601" width="70" height="65" id="room-108"/>
+		<rect x="1" y="666" width="70" height="120" id="room-109"/>
+		<rect x="1" y="786" width="70" height="120" id="room-110"/>
+		<rect x="121" y="336" width="50" height="50" id="room-111"/>
+		<rect x="121" y="386" width="50" height="30" id="room-112"/>
+		<rect x="121" y="416" width="50" height="30" id="room-113"/>
+		<rect x="121" y="446" width="50" height="50" id="room-114"/>
+		<rect x="121" y="706" width="50" height="60" id="room-115"/>
+		<rect x="121" y="766" width="50" height="60" id="room-116"/>
+		<rect x="171" y="166" width="100" height="100" id="room-117"/>
+		<rect x="271" y="196" width="100" height="70" id="room-118"/>
+		<rect x="371" y="196" width="80" height="70" id="room-119"/>
+		<rect x="451" y="196" width="40" height="70" id="room-120"/>
+		<rect x="491" y="261" width="75" height="75" id="room-121"/>
+		<rect x="171" y="336" width="30" height="50" id="room-122"/>
+		<rect x="201" y="336" width="110" height="50" id="room-123"/>
+		<rect x="311" y="336" width="30" height="50" id="room-124"/>
+		<rect x="341" y="356" width="30" height="30" id="room-125"/>
+		<rect x="371" y="336" width="50" height="50" id="room-126"/>
+		<rect x="421" y="296" width="35" height="40" id="room-127"/>
+		<rect x="456" y="296" width="35" height="40" id="room-128"/>
+		<rect x="251" y="946" width="80" height="80" id="room-129"/>
+		<rect x="331" y="946" width="80" height="80" id="room-130"/>
+		<rect x="411" y="946" width="80" height="80" id="room-131"/>
+		<rect x="251" y="1056" width="120" height="80" id="room-132"/>
+		<rect x="371" y="1056" width="120" height="80" id="room-133"/>
+		<rect x="181" y="1036" width="40" height="40" id="room-134"/>
+		<rect x="181" y="1076" width="40" height="60" id="room-135"/>
+	</svg>
+	<svg viewBox="0 0 567 1137" class="map" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<path d="M 121 446 V 666
+						 M 421 336 v 20
+						 M 121 826 V 906
+						 l 60 40 h 310 v 190 h -310 v -150 L 71 906
+		         M 66 151 v 60 L 71 266 M 106 151 v 60 L 121 266
+		         M 121 211 v 55 h 50 v -55 z m 5 47.5 v -10 h 10 v -10 h 10 v -10 h 10 v -10 h 10
+		         M 121 666 v 40 h 50 v -40 z m 5 35 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10
+		         M 371 296 v 40 h 50 v -40 z m 5 35 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10
+						 M 181 986 h 40 v 50 h -40 z m 5 40 v -10 h 10 v -10 h 10 v -10 h 10
+						 M 181 266 h 75 v 40 h -75 z l 75 40 m 0 -40 l -75 40
+						 M 291 296 h 80 v 40 h -80 z l 80 40 m 0 -40 l -80 40
+		"/>
+		<rect x="1" y="266" width="70" height="80" id="room-200"/>
+		<rect x="1" y="346" width="70" height="80" id="room-201"/>
+		<rect x="1" y="426" width="70" height="80" id="room-202"/>
+		<rect x="1" y="506" width="70" height="80" id="room-203"/>
+		<rect x="1" y="586" width="70" height="80" id="room-204"/>
+		<rect x="1" y="666" width="70" height="80" id="room-205"/>
+		<rect x="1" y="746" width="70" height="80" id="room-206"/>
+		<rect x="1" y="826" width="70" height="80" id="room-207"/>
+		<rect x="121" y="336" width="50" height="30" id="room-208"/>
+		<rect x="121" y="366" width="50" height="50" id="room-209"/>
+		<rect x="121" y="416" width="50" height="30" id="room-210"/>
+		<rect x="121" y="706" width="50" height="60" id="room-211"/>
+		<rect x="121" y="766" width="50" height="60" id="room-212"/>
+		<rect x="1" y="1" width="170" height="150" id="room-213"/>
+		<rect x="106" y="151" width="65" height="20" id="room-214"/>
+		<rect x="106" y="171" width="65" height="40" id="room-215"/>
+		<rect x="171" y="166" width="100" height="100" id="room-216"/>
+		<rect x="271" y="196" width="30" height="70" id="room-217"/>
+		<rect x="301" y="196" width="80" height="70" id="room-218"/>
+		<rect x="381" y="196" width="80" height="70" id="room-219"/>
+		<rect x="461" y="196" width="30" height="70" id="room-220"/>
+		<rect x="491" y="261" width="75" height="75" id="room-221"/>
+		<rect x="171" y="336" width="85" height="70" id="room-222"/>
+		<rect x="256" y="371" width="35" height="35" id="room-223"/>
+		<rect x="291" y="336" width="80" height="70" id="room-224"/>
+		<rect x="371" y="356" width="50" height="50" id="room-225"/>
+		<rect x="421" y="296" width="40" height="40" id="room-226"/>
+		<rect x="461" y="296" width="30" height="40" id="room-227"/>
+		<rect x="221" y="946" width="270" height="190" id="room-228"/>
+	</svg>
+	<svg viewBox="0 0 567 1137" class="map" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<path d="M 71 266 H 121
+		         M 121 406 V 666
+						 M 121 826 V 906 H 71
+						 M 421 336 v 20
+						 M 121 211 v 55 h 50 v -55 z m 5 47.5 v -10 h 10 v -10 h 10 v -10 h 10 v -10 h 10
+						 M 121 666 v 40 h 50 v -40 z m 5 35 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10
+						 M 371 296 v 40 h 50 v -40 z m 5 35 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10
+		"/>
+		<rect x="1" y="266" width="70" height="80" id="room-300"/>
+		<rect x="1" y="346" width="70" height="80" id="room-301"/>
+		<rect x="1" y="426" width="70" height="80" id="room-302"/>
+		<rect x="1" y="506" width="70" height="80" id="room-303"/>
+		<rect x="1" y="586" width="70" height="80" id="room-304"/>
+		<rect x="1" y="666" width="70" height="80" id="room-305"/>
+		<rect x="1" y="746" width="70" height="80" id="room-306"/>
+		<rect x="1" y="826" width="70" height="80" id="room-307"/>
+		<rect x="121" y="706" width="50" height="60" id="room-308"/>
+		<rect x="121" y="766" width="50" height="60" id="room-309"/>
+		<rect x="171" y="166" width="100" height="100" id="room-310"/>
+		<rect x="271" y="196" width="100" height="70" id="room-311"/>
+		<rect x="371" y="196" width="80" height="70" id="room-312"/>
+		<rect x="451" y="196" width="40" height="70" id="room-313"/>
+		<rect x="491" y="261" width="75" height="75" id="room-314"/>
+		<rect x="121" y="336" width="20" height="70" id="room-315"/>
+		<rect x="141" y="336" width="30" height="70" id="room-316"/>
+		<rect x="171" y="336" width="85" height="70" id="room-317"/>
+		<rect x="256" y="371" width="35" height="35" id="room-318"/>
+		<rect x="291" y="336" width="80" height="70" id="room-319"/>
+		<rect x="371" y="356" width="50" height="50" id="room-320"/>
+		<rect x="421" y="296" width="40" height="40" id="room-321"/>
+		<rect x="461" y="296" width="15" height="40" id="room-322"/>
+		<rect x="476" y="296" width="15" height="40" id="room-323"/>
+	</svg>
+	<svg viewBox="0 0 567 1137" class="map" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<path d="M 71 266 H 121
+						 M 121 431 V 666
+						 M 171 266 V 336
+						 M 121 766 V 906 H 71
+						 M 121 211 v 55 h 50 v -55 z m 5 47.5 v -10 h 10 v -10 h 10 v -10 h 10 v -10 h 10
+						 M 121 666 v 40 h 50 v -40 z m 5 35 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10 v -7.5 h 10
+		"/>
+		<rect x="1" y="266" width="70" height="80" id="room-400"/>
+		<rect x="1" y="346" width="70" height="80" id="room-401"/>
+		<rect x="1" y="426" width="70" height="80" id="room-402"/>
+		<rect x="1" y="506" width="70" height="80" id="room-403"/>
+		<rect x="1" y="586" width="70" height="80" id="room-404"/>
+		<rect x="1" y="666" width="70" height="80" id="room-405"/>
+		<rect x="1" y="746" width="70" height="80" id="room-406"/>
+		<rect x="1" y="826" width="70" height="80" id="room-407"/>
+		<rect x="121" y="336" width="50" height="25" id="room-408"/>
+		<rect x="121" y="361" width="50" height="20" id="room-409"/>
+		<rect x="121" y="381" width="50" height="50" id="room-410"/>
+		<rect x="121" y="706" width="50" height="60" id="room-411"/>
+	</svg>
 </main>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-firestore.js"></script>
@@ -47,7 +187,7 @@
 	};
 	firebase.initializeApp(firebaseConfig);
 </script>
-<!-- <script src="./map.js"></script> -->
+<script src="./map.js"></script>
 <script src="/common.js"></script>
 </body>
 </html>
